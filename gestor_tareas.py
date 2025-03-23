@@ -1,15 +1,18 @@
 import json 
 
+from colorama import Fore, Style, init
+init(autoreset=True)
+
 # Lista donde almacenarán las tareas
 tareas = []
 
 # Función para mostrar el menú
 def mostrar_menu():
-    print("\n🎯  Gestor de Tareas")
-    print("1️⃣  Agregar tarea")
-    print("2️⃣  Ver tareas")
-    print("3️⃣  Eliminar tarea")
-    print("4️⃣  Salir")
+    print(Fore.BLUE + Style.BRIGHT + "\n🎯   Gestor de Tareas" + Style.RESET_ALL)
+    print(Fore.CYAN +  "1️⃣   Agregar tarea" + Style.RESET_ALL)
+    print(Fore.CYAN +  "2️⃣   Ver tareas" + Style.RESET_ALL)
+    print(Fore.CYAN +  "3️⃣   Eliminar tarea" + Style.RESET_ALL)
+    print(Fore.CYAN +  "4️⃣   Salir" + Style.RESET_ALL)
 
 # Función principal
 def main():
@@ -25,10 +28,10 @@ def main():
     elif opcion == "3":
         eliminar_tarea()
     elif opcion == "4":
-        print("Saliendo del gestor. ¡Hasta pronto!")
+        print(Fore.GREEN + Style.BRIGHT + "Saliendo del gestor. ¡Hasta pronto! 👋" + Style.RESET_ALL)
         break
     else:
-        print("⛔ Opción no válido. Intenta de nuevo.")
+        print(Fore.RED + "⛔ Opción no válido. Intenta de nuevo." + Style.RESET_ALL)
 
 
 
@@ -37,7 +40,7 @@ def agregar_tarea():
     tarea = input("Escribe la nueva tarea:")
     tareas.append(tarea)
     guardar_tareas()
-    print(f"✅ Tarea '{tarea}' agregada con éxito.")
+    print(Fore.GREEN + f"✅ Tarea '{tarea}' agregada con éxito." + Style.RESET_ALL)
 
 
 # Función Ver Tareas
@@ -45,7 +48,7 @@ def ver_tareas():
     if not tareas:
         print("📫  No hay tareas pendientes.")
     else:
-        print("\n📋  Lista de tareas: ")
+        print(Fore.YELLOW + "\n📋  Lista de tareas: " + Style.RESET_ALL)
         for i, tarea in enumerate(tareas, start=1):
             print(f"{i}. {tarea}")
 
