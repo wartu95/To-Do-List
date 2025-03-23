@@ -14,14 +14,15 @@ def mostrar_menu():
     print(Fore.CYAN + "1️⃣   Agregar tarea" + Style.RESET_ALL)
     print(Fore.CYAN + "2️⃣   Ver tareas" + Style.RESET_ALL)
     print(Fore.CYAN + "3️⃣   Completar tarea" + Style.RESET_ALL)
-    print(Fore.CYAN + "4️⃣   Salir" + Style.RESET_ALL)
+    print(Fore.CYAN + "4️⃣   Modificar tarea" + Style.RESET_ALL)
+    print(Fore.CYAN + "5️⃣   Salir" + Style.RESET_ALL)
 
 
 # Función principal
 def main():
 
     while True:
-        
+
         mostrar_menu()
         opcion = input("Selecciona un opcion:  ")
 
@@ -32,10 +33,12 @@ def main():
         elif opcion == "3":
             completar_tarea()
         elif opcion == "4":
+            modificar_tarea()
+        elif opcion == "5":
             print(
                 Fore.GREEN
                 + Style.BRIGHT
-                + "Saliendo del gestor. ¡Hasta pronto! 👋"
+                + "Saliendo del gestor. ¡Hasta pronto 👋! "
                 + Style.RESET_ALL
             )
             break
@@ -109,6 +112,8 @@ def eliminar_tarea():
     except ValueError:
         print("⚠️  Ingresa un número válido.")
 
+
+
 # Función Completar Tarea
 def completar_tarea():
     ver_tareas()
@@ -127,6 +132,31 @@ def completar_tarea():
     except ValueError:
         print(Fore.RED + "⚠️  Ingresa un número válido." + Style.RESET_ALL)
 
+
+# Función de modificar tareas.
+def modificar_tarea():
+    ver_tareas()
+
+    try:
+        indice = int(input("✍️ Ingresa el número de la tarea a modificar: ")) -1
+        if 0 <= indice < len(tareas):
+            nueva_tarea = input(f"📝  Nueva descripción (deja en blanco para no cambiar '{tareas[indice]['tarea']}'):").strip()
+            nueva_fecha = input(f"📅  Nueva fecha de vencimiento (deja en blanco para no cambiar '{tareas[indice]['vence']}'): ").strip()
+
+            # Si el usuario deja en blanco, se mantiene el valor actual.
+            if nueva_tarea:
+                tareas[indice]["tarea"] = nueva_tarea
+            if nueva_fecha:
+                tareas[indice]["vence"] = nueva_fecha
+
+            guardar_tareas()
+            print(Fore.GREEN + "✅ Tarea modificada con éxito." + Style.RESET_ALL)
+        
+        else:
+            print(Fore.RED + "⚠️ Número fuera de rango." + Style.RESET_ALL)
+
+    except ValueError:
+        print(Fore.RED + "⚠️ Ingresa un número válido." + Style.RESET_ALL)    
 
 # Guardar tareas en un archivo JSON
 def guardar_tareas():

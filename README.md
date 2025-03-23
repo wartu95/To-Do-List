@@ -1,11 +1,24 @@
 # 📌 Gestor de Tareas en Consola
 
-Este es un pequeño gestor de tareas en Python que permite:
+Este es un **proyecto de aprendizaje** donde se desarrolla un gestor de tareas en Python, permitiendo agregar, visualizar, completar y modificar tareas.
 
-✅ Agregar tareas  
-✅ Ver tareas guardadas  
-✅ Eliminar tareas  
-✅ Guardar las tareas en un archivo JSON para persistencia  
+## 🚀 Funcionalidades
+✅  **Agregar tareas** con descripción y fecha de  vencimiento.
+✅  **Ver lista de tareas** (pendientes y completadas).
+✅  **Completar tareas** y marcarlas como finalizadas.
+✅  **Modificar tareas** (cambiar nombre y fecha de vencimiento).
+✅  **Guardando automático** en un archivo JSON.
 
-## 🛠️ Instalación
-1. Clona este repositorio:  
+## 🔧 Tecnologías utilizadas
+- **Python** 🐍
+- **JSON** para almacenamiento de datos.
+- **Colorama** para mejorar la interfaz la interfaz en consola.
+- **DateTime** para llevar registro la fecha de creación y la fecha de vencimiento.
+
+## 📌 Próximo pasos
+Este proyecto forma parte de mi proceso de aprendizaje en Python. Próximamente implementaré:
+1️⃣ **Recordatorios de vencimiento**.
+2️⃣ **Exportación de tareas** a `.csv` o `.txt`.
+
+## 📂 Instalación
+1️⃣ Clone el repositorio
