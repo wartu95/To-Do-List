@@ -1,5 +1,5 @@
 import json 
-
+from datetime import datetime
 from colorama import Fore, Style, init
 init(autoreset=True)
 
@@ -37,20 +37,36 @@ def main():
 
 # Función Agregar Tarea
 def agregar_tarea():
-    tarea = input("Escribe la nueva tarea:")
-    tareas.append(tarea)
+    tarea = input("Escribe la nueva tarea: ")
+
+    # Valida que no este vacia o solo contenga espacios en blanco.
+    if not tarea.strip():
+        print(Fore.RED + "⚠️ No puedes agregar una tarea vacía." + Style.RESET_ALL)
+        return
+    
+    # Fecha de creacion  y fecha de vencimiento.
+    fecha_creacion = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    fecha_vencimiento = input("📅  Ingresa fecha de vencimiento (YYYY-MM-DD) o presionar Enter para omitir: ")
+
+    # Validar fecha de vencimiento o si no coloca fecha indicar el valor de "Sin fecha"
+    if fecha_vencimiento.strip() == "":
+        fecha_vencimiento = "Sin fecha"
+    
+    
+    # Guardamos la tarea con fechas en el JSON 
+    tareas.append({"tarea": tarea, "creado": fecha_creacion, "vence": fecha_vencimiento})
     guardar_tareas()
-    print(Fore.GREEN + f"✅ Tarea '{tarea}' agregada con éxito." + Style.RESET_ALL)
+    print(Fore.GREEN + Style.BRIGHT +f"✅ Tarea '{tarea}' agregada con éxito. (creada el {fecha_creacion})" + Style.RESET_ALL)
 
 
 # Función Ver Tareas
 def ver_tareas():
     if not tareas:
-        print("📫  No hay tareas pendientes.")
+        print(Fore.RED + "📫  No hay tareas pendientes." + Style.RESET_ALL)
     else:
         print(Fore.YELLOW + "\n📋  Lista de tareas: " + Style.RESET_ALL)
-        for i, tarea in enumerate(tareas, start=1):
-            print(f"{i}. {tarea}")
+        for i, t in enumerate(tareas, start=1):
+            print(Fore.CYAN + f"{i}. 📝 {t['tarea']} (📅 Creado: {t['creado']} - ⌛ Vence: {t['vence']})" + Style.RESET_ALL)
 
 
 
